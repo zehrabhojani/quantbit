@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="loginstyle.css" >
+    <script>
+        function validateForm(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get form values
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Validation flags
+            let isValid = true;
+
+            // Email validation
+            const emailError = document.getElementById('emailError');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                emailError.textContent = 'Please enter a valid email address.';
+                isValid = false;
+            } else {
+                emailError.textContent = '';
+            }
+
+            // Password validation
+            const passwordError = document.getElementById('passwordError');
+            if (password.length < 8) {
+                passwordError.textContent = 'Password must be at least 8 characters long.';
+                isValid = false;
+            } else {
+                passwordError.textContent = '';
+            }
+
+            // If the form is valid, submit it
+            if (isValid) {
+                alert('Form submitted successfully!');
+                document.getElementById('loginForm').submit();
+            }
+        }
+    </script>
+    
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+        <a href="#aboutus">About Us</a>
+        <a href="#services">Services</a>
+        <a href="#contactus">Contact Us</a>
+    </nav>
+    
+    <div class="login">
+        <h2>Login</h2>
+        <form onsubmit="validateForm(event)">
+            <input type="text" id="email" name="email" placeholder="Email">
+            <input type="password" id="password" name="password" placeholder="Password">
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</body>
+</html>
